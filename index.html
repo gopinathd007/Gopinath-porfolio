@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gopinath D | Embedded Systems & Firmware Engineer</title>
+  
+  <style>
+    /* 1. Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    /* ELECTRIC SKY BLUE THEME */
+    :root {
+      --bg: #070d18;
+      --card-bg: #0f182b;
+      --card-border: #1b2a47;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --accent-glow: rgba(56, 189, 248, 0.14);
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --tag-bg: rgba(56, 189, 248, 0.08);
+      --tag-border: rgba(56, 189, 248, 0.25);
+      --tag-text: #7dd3fc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Body Text - Inter */
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      background-color: var(--bg);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    /* Headings & Brand - Manrope */
+    h1, h2, h3, h4, .hero-title, .section-title, nav .logo {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    /* Monospace Tech / Metadata - JetBrains Mono */
+    code, .tech-label, .tag, .status-badge, .company, .project-date, .info-date, .nav-resume-btn {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(7, 13, 24, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.1rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .nav-resume-btn {
+      color: var(--accent) !important;
+      font-weight: 600 !important;
+      border: 1px solid var(--tag-border);
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      background: var(--tag-bg);
+      font-size: 0.82rem !important;
+    }
+
+    .nav-resume-btn:hover {
+      background: var(--accent);
+      color: #070d18 !important;
+    }
+
+    /* Hero Section */
+    header {
+      padding: 6rem 8% 4.5rem;
+      max-width: 950px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.4rem 0.9rem;
+      background: var(--accent-glow);
+      border: 1px solid var(--tag-border);
+      color: var(--accent);
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .role-title {
+      font-size: 1.35rem;
+      color: #cbd5e1;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin-bottom: 2.2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #070d18;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--card-border);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      padding: 4.5rem 8%;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .item-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .company, .project-date {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .location {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .item-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+
+    .item-card ul {
+      list-style-position: inside;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    /* JetBrains Mono Tags */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid var(--tag-border);
+      letter-spacing: -0.01em;
+    }
+
+    /* Education & Certs Rows */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .info-row {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.35rem 1.6rem;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .info-row h4 {
+      font-size: 1.05rem;
+      color: #ffffff;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-row p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .info-date {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Contact Box */
+    .contact-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 8%;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.3rem; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">Gopinath D</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <!-- Resume Link in Navbar -->
+      <li><a href="resume.pdf" target="_blank" class="nav-resume-btn-outline">Resume 📄</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="about">
+    <div class="status-badge">Available for Embedded & Firmware Roles</div>
+    <h1>Hi, I'm <span>Gopinath D</span></h1>
+    <p class="role-title">Embedded Systems / Firmware Engineer</p>
+    <p class="bio">
+      Electronics and Communication professional with knowledge of embedded systems, C programming, microcontrollers, firmware development, and hardware interfacing. Skilled in debugging, sensor integration, and communication protocols, with a strong interest in developing reliable embedded solutions.
+    </p>
+    
+    <!-- Action Buttons with Resume -->
+    <div class="btn-group">
+      <a href="resume.pdf" target="_blank" class="btn btn-outline">
+        <span>View Resume</span> 📄
+      </a>
+      <a href="resume.pdf" download="Gopinath_D_Resume.pdf" class="btn btn-outline">
+        <span>Download CV</span> 📥
+      </a>
+      <a href="https://linkedin.com/in/gopinath-d" target="_blank" class="btn btn-outline">
+        <span>LinkedIn</span>
+      </a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
+    </div>
+  </header>
+
+  <!-- Technical Skills Section (Updated directly from Resume) -->
+  <section id="skills">
+    <div class="section-header">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Core hardware, software, and debugging competencies</p>
+    </div>
+    <div class="cards-grid">
+      
+      <!-- Programming -->
+      <div class="item-card">
+        <h3>Programming</h3>
+        <p class="location">Core software languages</p>
+        <div class="tag-cloud">
+          <span class="tag">Embedded C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python (basics)</span>
+        </div>
+      </div>
+
+      <!-- Microcontrollers -->
+      <div class="item-card">
+        <h3>Microcontrollers</h3>
+        <p class="location">Architectures & Real-Time OS</p>
+        <div class="tag-cloud">
+          <span class="tag">ESP32</span>
+          <span class="tag">Arduino (AVR)</span>
+          <span class="tag">8051</span>
+          <span class="tag">Architecture & Interfacing</span>
+          <span class="tag">FreeRTOS / RTOS concepts</span>
+          <span class="tag">Embedded Linux (basics)</span>
+        </div>
+      </div>
+
+      <!-- Peripherals & Protocols -->
+      <div class="item-card">
+        <h3>Peripherals & Protocols</h3>
+        <p class="location">Serial, wireless & hardware interfaces</p>
+        <div class="tag-cloud">
+          <span class="tag">UART</span>
+          <span class="tag">SPI</span>
+          <span class="tag">I2C</span>
+          <span class="tag">GPIO</span>
+          <span class="tag">ADC</span>
+          <span class="tag">PWM</span>
+          <span class="tag">Timers</span>
+          <span class="tag">Interrupts</span>
+          <span class="tag">Wi-Fi</span>
+          <span class="tag">Bluetooth</span>
+          <span class="tag">MQTT</span>
+        </div>
+      </div>
+
+      <!-- Firmware & Tools -->
+      <div class="item-card">
+        <h3>Firmware & Tools</h3>
+        <p class="location">Development platforms & analysis</p>
+        <div class="tag-cloud">
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">ESP-IDF (basics)</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Tinker CAD</span>
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">Datasheet Analysis</span>
+          <span class="tag">Schematic Analysis</span>
+        </div>
+      </div>
+
+      <!-- PCB Design -->
+      <div class="item-card">
+        <h3>PCB Design</h3>
+        <p class="location">EDA tools, routing & verification</p>
+        <div class="tag-cloud">
+          <span class="tag">KiCad</span>
+          <span class="tag">Proteus</span>
+          <span class="tag">Cadence (basics)</span>
+          <span class="tag">Schematic Capture</span>
+          <span class="tag">Component Placement</span>
+          <span class="tag">Routing</span>
+          <span class="tag">Design Rule Checks (DRC)</span>
+        </div>
+      </div>
+
+      <!-- Hardware & Test -->
+      <div class="item-card">
+        <h3>Hardware & Test</h3>
+        <p class="location">Lab instruments & PCB handling</p>
+        <div class="tag-cloud">
+          <span class="tag">PCB Soldering (Through-Hole & SMD)</span>
+          <span class="tag">Circuit Assembly</span>
+          <span class="tag">Oscilloscope</span>
+          <span class="tag">Digital Multimeter</span>
+          <span class="tag">Function Generator</span>
+          <span class="tag">Component Identification</span>
+          <span class="tag">ESD-Safe Handling</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Professional Experience Section -->
+  <section id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-subtitle">Hands-on internships and industrial engineering training</p>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Rehabionics Health Care -->
+      <div class="item-card">
+        <div>
+          <div class="card-meta">
+            <span class="company">Rehabionics Health Care Pvt. Ltd.</span>
+            <span class="project-date">Sep 2025</span>
+          </div>
+          <p class="location">Coimbatore, Tamil Nadu</p>
+          <h3>PCB Design Intern</h3>
+          <ul>
+            <li>Designed and reviewed PCB layouts from circuit schematics using industry-standard EDA tools for medical electronics.</li>
+            <li>Performed component placement, track routing, and design optimization to support signal integrity and manufacturability.</li>
+            <li>Verified PCB layouts against schematic netlists and connectivity requirements to identify design errors before fabrication.</li>
+          </ul>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag">EDA Tools</span>
+          <span class="tag">PCB Layout</span>
+          <span class="tag">Signal Integrity</span>
+          <span class="tag">Medical Electronics</span>
+          <span class="tag">Netlist Verification</span>
+        </div>
+      </div>
+
+      <!-- Emig Litz Technologies -->
+      <div class="item-card">
+        <div>
+          <div class="card-meta">
+            <span class="company">Emig Litz Technologies</span>
+            <span class="project-date">July 2025 – Sep 2025</span>
+          </div>
+          <p class="location">Coimbatore, Tamil Nadu</p>
+          <h3>Embedded System Intern</h3>
+          <ul>
+            <li>Gained hands-on experience in embedded systems development, electronic hardware interfacing, and microcontroller-based applications.</li>
+            <li>Assisted in hardware integration, circuit testing, troubleshooting, and functional verification of electronic systems.</li>
+            <li>Applied embedded systems concepts and automation techniques to develop practical electronics solutions.</li>
+          </ul>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag">Embedded Systems</span>
+          <span class="tag">Microcontrollers</span>
+          <span class="tag">Hardware Integration</span>
+          <span class="tag">Bench Testing</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Real-world IoT, embedded & AI signal processing implementations</p>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Project 1: Smart Agriculture -->
+      <div class="item-card">
+        <div>
+          <div class="card-meta">
+            <span class="company">IoT & Automation</span>
+            <span class="project-date">2024</span>
+          </div>
+          <h3>Smart Agriculture Monitoring System (IoT)</h3>
+          <ul>
+            <li>Developed ESP32 firmware for soil moisture, temperature, and humidity monitoring using ADC and I2C sensors.</li>
+            <li>Implemented IoT-based automated irrigation using sensor thresholds and Wi-Fi connectivity.</li>
+            <li>Integrated a mobile application for real-time monitoring, data visualization, and automated alerts.</li>
+          </ul>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag">ESP32</span>
+          <span class="tag">Embedded C</span>
+          <span class="tag">Sensors (ADC / I2C)</span>
+          <span class="tag">Wi-Fi</span>
+          <span class="tag">IoT Cloud Platform</span>
+          <span class="tag">Mobile App</span>
+        </div>
+      </div>
+
+      <!-- Project 2: Hybrid Transformer-SNN -->
+      <div class="item-card">
+        <div>
+          <div class="card-meta">
+            <span class="company">Signal Processing & AI/ML</span>
+            <span class="project-date">2026</span>
+          </div>
+          <h3>Hybrid Transformer-SNN for Rail Squat Detection</h3>
+          <ul>
+            <li>Developed a hybrid Transformer-SNN model for railway squat defect detection using vibration data.</li>
+            <li>Applied Continuous Wavelet Transform (CWT) for signal processing and time-frequency feature extraction.</li>
+            <li>Implemented microcontroller-based data acquisition and evaluated model performance for defect classification.</li>
+          </ul>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag">Arduino</span>
+          <span class="tag">Vibration Sensors</span>
+          <span class="tag">CWT</span>
+          <span class="tag">Spiking Neural Network (SNN)</span>
+          <span class="tag">Transformer</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education & Certifications Section -->
+  <section id="education">
+    <div class="section-header">
+      <h2 class="section-title">Education & Achievements</h2>
+      <p class="section-subtitle">Academic qualifications, certifications, and recognitions</p>
+    </div>
+    <div class="info-list">
+      
+      <!-- B.E. Degree -->
+      <div class="info-row">
+        <div>
+          <h4>Bachelor of Engineering, Electronics and Communication Engineering</h4>
+          <p>Info Institute of Engineering, Coimbatore &bull; <strong>CGPA: 8.32 / 10</strong></p>
+        </div>
+        <span class="info-date">2022 – 2026</span>
+      </div>
+
+      <!-- HSC -->
+      <div class="info-row">
+        <div>
+          <h4>Higher Secondary Certificate (HSC)</h4>
+          <p>Zamindar's Higher Secondary School &bull; <strong>71.6%</strong></p>
+        </div>
+        <span class="info-date">2021 – 2022</span>
+      </div>
+
+      <!-- Certifications -->
+      <div class="info-row">
+        <div>
+          <h4>Certifications & Achievements</h4>
+          <p>
+            &bull; <strong>Embedded System Design</strong> &ndash; <em>Emig Litz Technologies</em><br>
+            &bull; <strong>PCB Designer</strong> &ndash; <em>Rehabionics Health Care Pvt. Ltd.</em><br>
+            &bull; <strong>Laser Source Repair Trainee</strong> &ndash; <em>Laser Experts India LLP</em><br>
+            &bull; <strong>Participant</strong> &ndash; <em>Smart India Hackathon (SIH)</em>
+          </p>
+        </div>
+        <span class="info-date">Recognitions</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2 style="font-size: 2.2rem; margin-bottom: 0.8rem; color: #ffffff;">Let's Build Something Together</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">
+        Available for full-time roles and internships in Embedded Systems, Firmware Engineering, and IoT.
+      </p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="mailto:gopinathdhanabal596@gmail.com" class="btn btn-outline">Email Me ✉️</a>
+        <a href="tel:+919626569152" class="btn btn-outline">call Me</a>
+        <a href="https://linkedin.com/in/gopinath-d" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Gopinath D &bull; Embedded Systems & Firmware Engineer</p>
+  </footer>
+
+</body>
+</html>
